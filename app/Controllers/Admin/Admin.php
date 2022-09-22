@@ -72,7 +72,7 @@ class Admin extends BaseController
             $dataAkun = $this->AdminModel->getData($username);
 
             if (!password_verify($password, $dataAkun['password'])) {
-                $err[] = 'Account not registered';
+                $err[] = 'Password not found';
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
                 return redirect()->to('admin/login');
@@ -116,8 +116,41 @@ class Admin extends BaseController
         session()->destroy();
 
         if (session()->get('akun_username') != '') {
-            session()->setFlashData('success', 'Anda Berhasil Logout');
+            session()->setFlashData('success', 'Successfully Logout');
         }
         echo view('admin/login');
+    }
+
+    function forgotpassword()
+    {
+        $err = [];
+        if ($this->request->getMethod() == 'post') {
+            $username = $this->request->getVar('username');
+            if ($username == '') {
+                $err[] = 'Please enter your email or username';
+            }
+            if (empty($err)) {
+                $data = $this->AdminModel->getData($username);
+                if (empty($data)) {
+                    $err[] = 'Account not registered';
+                }
+            }
+            if (empty($err)) {
+                $email = $data['email'];
+                $token = md5(date('ymdhis'));
+                $dataUpdate = [
+                    'email' => $email,
+                    'token' => $token
+                ];
+                $this->AdminModel->updateData($dataUpdate);
+                session()->setFlashData('success', 'Email successfully send to your email');
+            }
+            if ($err) {
+                session()->setFlashData('username', $username);
+                session()->setFlashData('warning', $err);
+            }
+            return redirect()->to('admin/forgot-password');
+        }
+        echo view('admin/forgot-password');
     }
 }

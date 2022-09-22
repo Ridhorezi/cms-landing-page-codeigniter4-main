@@ -43,6 +43,7 @@ $routes->group('admin', function($routes) {
     $routes->add('login', 'Admin\Admin::login');
     $routes->add('sukses', 'Admin\Admin::sukses');
     $routes->add('logout', 'Admin\Admin::logout');
+    $routes->add('forgot-password', 'Admin\Admin::forgotpassword');
 });
 
 
