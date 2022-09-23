@@ -13,7 +13,7 @@ class Admin extends BaseController
         $this->validation = \Config\Services::validation();
         $this->AdminModel = new AdminModel();
         helper('cookie');
-        helper('global_fungsi_helper');
+        helper('global_helper');
     }
     public function login()
     {
@@ -138,12 +138,27 @@ class Admin extends BaseController
             if (empty($err)) {
                 $email = $data['email'];
                 $token = md5(date('ymdhis'));
+                $link = site_url(
+                    "admin/resset-password/?email=$email&token=$token"
+                );
+
+                $attachment = '';
+                $to = $email;
+                $title = 'Resset Password';
+                $message = 'Here is a link to reset your password.';
+                $message .= "Please click the following link $link";
+
+                send_email($attachment, $to, $title, $message);
+
                 $dataUpdate = [
                     'email' => $email,
-                    'token' => $token
+                    'token' => $token,
                 ];
                 $this->AdminModel->updateData($dataUpdate);
-                session()->setFlashData('success', 'Email successfully send to your email');
+                session()->setFlashData(
+                    'success',
+                    'Email successfully send to your email'
+                );
             }
             if ($err) {
                 session()->setFlashData('username', $username);
