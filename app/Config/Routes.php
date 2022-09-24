@@ -40,10 +40,11 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 $routes->group('admin', function($routes) {
-    $routes->add('login', 'Admin\Admin::login');
-    $routes->add('sukses', 'Admin\Admin::sukses');
-    $routes->add('logout', 'Admin\Admin::logout');
-    $routes->add('forgot-password', 'Admin\Admin::forgotpassword');
+    $routes->add('auth-login', 'Admin\Admin::login');
+    $routes->add('auth-sukses', 'Admin\Admin::sukses');
+    $routes->add('auth-logout', 'Admin\Admin::logout');
+    $routes->add('auth-forgot', 'Admin\Admin::forgotpassword');
+    $routes->add('auth-resset', 'Admin\Admin::ressetpassword');
 });
 
 

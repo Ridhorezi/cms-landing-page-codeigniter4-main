@@ -30,7 +30,7 @@ class Admin extends BaseController
                 delete_cookie('cookie_username');
                 delete_cookie('cookie_password');
 
-                return redirect()->to('admin/login');
+                return redirect()->to('admin/auth-login');
             }
 
             $akun = [
@@ -40,7 +40,7 @@ class Admin extends BaseController
             ];
 
             session()->set($akun);
-            return redirect()->to('admin/sukses');
+            return redirect()->to('admin/auth-sukses');
         }
         $data = [];
         if ($this->request->getMethod() == 'post') {
@@ -63,7 +63,7 @@ class Admin extends BaseController
                     'warning',
                     $this->validation->getErrors()
                 );
-                return redirect()->to('admin/login');
+                return redirect()->to('admin/auth-login');
             }
 
             $username = $this->request->getVar('username');
@@ -75,7 +75,7 @@ class Admin extends BaseController
                 $err[] = 'Password not found';
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
-                return redirect()->to('admin/login');
+                return redirect()->to('admin/auth-login');
             }
 
             if ($remember_me == '1') {
@@ -94,10 +94,10 @@ class Admin extends BaseController
             ];
             session()->set($akun);
             return redirect()
-                ->to('admin/sukses')
+                ->to('admin/auth-sukses')
                 ->withCookies();
         }
-        echo view('admin/login', $data);
+        echo view('admin/auth-login', $data);
     }
 
     function sukses()
@@ -118,7 +118,7 @@ class Admin extends BaseController
         if (session()->get('akun_username') != '') {
             session()->setFlashData('success', 'Successfully Logout');
         }
-        echo view('admin/login');
+        echo view('admin/auth-login');
     }
 
     function forgotpassword()
@@ -139,7 +139,7 @@ class Admin extends BaseController
                 $email = $data['email'];
                 $token = md5(date('ymdhis'));
                 $link = site_url(
-                    "admin/resset-password/?email=$email&token=$token"
+                    "admin/auth-resset/?email=$email&token=$token"
                 );
 
                 $attachment = '';
@@ -164,8 +164,76 @@ class Admin extends BaseController
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
             }
-            return redirect()->to('admin/forgot-password');
+            return redirect()->to('admin/auth-forgot');
         }
-        echo view('admin/forgot-password');
+        echo view('admin/auth-forgot');
+    }
+    function ressetpassword()
+    {
+        $err = [];
+        $email = $this->request->getVar('email');
+        $token = $this->request->getVar('token');
+        if ($email != '' and $token != '') {
+            $dataAkun = $this->AdminModel->getData($email);
+            if ($dataAkun['token'] != $token) {
+                $err[] = 'Invalid token';
+            }
+        } else {
+            $err[] = 'Invalid parameter passed';
+        }
+
+        if ($err) {
+            session()->setFlashdata('warning', $err);
+        }
+
+        if ($this->request->getMethod() == 'post') {
+            $rulles = [
+                'password' => [
+                    'rules' => 'required|min_length[5]',
+                    'errors' => [
+                        'required' => 'Password must be filled',
+                        'min_length' =>
+                            'The minimum character length for the password is 5 characters',
+                    ],
+                ],
+                'confirm_password' => [
+                    'rules' => 'required|min_length[5]|matches[password]',
+                    'errors' => [
+                        'required' => 'Password must be filled',
+                        'min_length' =>
+                            'The minimum character length for the password is 5 characters',
+                        'matches' =>
+                            'Confirm password does not match the password entered',
+                    ],
+                ],
+            ];
+
+            if (!$this->validate($rulles)) {
+                session()->setFlashdata(
+                    'warning',
+                    $this->validation->getErrors()
+                );
+            } else {
+                $dataUpdate = [
+                    'email' => $email,
+                    'password' => password_hash(
+                        $this->request->getVar('password'),
+                        PASSWORD_DEFAULT
+                    ),
+                    'token' => null,
+                ];
+                $this->AdminModel->updateData($dataUpdate);
+                session()->setFlashdata(
+                    'success',
+                    'Password has been successfully reset, please login again'
+                );
+                delete_cookie('cookie_username');
+                delete_cookie('cookie_password');
+                return redirect()
+                    ->to('admin/auth-login')
+                    ->withCookies();
+            }
+        }
+        echo view('admin/auth-resset');
     }
 }

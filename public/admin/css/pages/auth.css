@@ -6,6 +6,13 @@ body{background-color:#fff}#auth{height:100vh;overflow-x:hidden}#auth #auth-righ
     margin-left: 100px;
 }
 
+.image-style-resset {
+    width: 72%;
+    margin-top: 2px;
+    height: 550px;
+    margin-left: 180px;
+}
+
 .image-style-forgot-password {
     width: 80%;
     height: 400px;
