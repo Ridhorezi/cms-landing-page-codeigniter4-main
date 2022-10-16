@@ -102,11 +102,7 @@ class Admin extends BaseController
 
     function sukses()
     {
-        print_r(session()->get());
-        echo 'test cookie user name' .
-            get_cookie('cookie_username') .
-            'test cookie password' .
-            get_cookie('cookie_password');
+        return redirect()->to('admin/dashboard');
     }
 
     function logout()

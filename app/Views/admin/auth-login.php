@@ -45,7 +45,9 @@
                             </div>
                             <?php }
                         ?>
-                    <form action="" method="POST">
+                    <form action="<?= site_url(
+                        'admin/auth-login'
+                    ) ?>" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" id="inputUsername" name="username" placeholder="Username" 
                                    value="<?php if (
@@ -73,13 +75,17 @@
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">
-                        <p><a class="font-bold" href="<?= site_url('admin/auth-forgot') ?>">Forgot password ?</a></p>
+                        <p><a class="font-bold" href="<?= site_url(
+                            'admin/auth-forgot'
+                        ) ?>">Forgot password ?</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
-                    <img class="image-style-login" src="<?= base_url('admin') ?>/images/bg/image-login-background.jpg" alt="Logo">
+                    <img class="image-style-login" src="<?= base_url(
+                        'admin'
+                    ) ?>/images/bg/image-login-background.jpg" alt="Logo">
                 </div>
             </div>
         </div>
