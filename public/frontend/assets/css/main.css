@@ -113,6 +113,7 @@ a:not([href]):not([tabindex]):hover {
 .section-header {
   color: #fff;
   margin-bottom: 40px;
+  margin-top: 50px;
   text-align: center;
 }
 .section-header .section-title {
@@ -312,10 +313,10 @@ a:not([href]):not([tabindex]):hover {
 #video-area .contents {
   padding: 160px 0 80px;
 }
-#video-area .contents h1 {
+#video-area .contents h3 {
   color: #fff;
   font-size: 50px;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 25px;
   line-height: 70px;
 }
@@ -681,6 +682,7 @@ a:not([href]):not([tabindex]):hover {
   background: url(../img/bg_2.jpg) fixed;
   background-position: cover;
   position: relative;
+  height: 750px;
 }
 .video-promo .video-promo-content {
   color: #fff;
@@ -689,6 +691,7 @@ a:not([href]):not([tabindex]):hover {
   color: #fff;
   font-size: 30px;
   text-transform: uppercase;
+  margin-top: 200px;
 }
 .video-promo .video-promo-content p {
   margin-bottom: 30px;
@@ -805,9 +808,11 @@ a:not([href]):not([tabindex]):hover {
    ========================================================================== */
 #testimonial {
   background: #f2f2f2;
+  height: 750px;
 }
 .testimonial-item {
   text-align: center;
+  margin-top: 200px;
 }
 .testimonial-item img {
   width: 80px;
