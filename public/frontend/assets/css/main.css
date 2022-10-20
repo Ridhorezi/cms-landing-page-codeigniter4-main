@@ -107,6 +107,11 @@ a:not([href]):not([tabindex]):focus,
 a:not([href]):not([tabindex]):hover {
   color: #4676fa;
 }
+
+.header-area{
+  height: 800PX;
+}
+
 .section {
   padding: 80px 0;
 }
@@ -682,13 +687,13 @@ a:not([href]):not([tabindex]):hover {
   background: url(../img/bg_2.jpg) fixed;
   background-position: cover;
   position: relative;
-  height: 750px;
+  height: 800px;
 }
 .video-promo .video-promo-content {
-  color: #fff;
+  color: black;
 }
 .video-promo .video-promo-content h2 {
-  color: #fff;
+  color: black;
   font-size: 30px;
   text-transform: uppercase;
   margin-top: 200px;
@@ -698,10 +703,10 @@ a:not([href]):not([tabindex]):hover {
 }
 .video-promo .video-promo-content .video-popup {
   min-width: 120px;
-  border: 2px solid #fff;
+  border: 2px solid #4676fa;
   border-radius: 10px;
   padding: 20px;
-  color: #fff;
+  color: #4676fa;
   display: inline-block;
   font-size: 38px;
   -webkit-transition: all 0.5s ease-in-out;
@@ -719,9 +724,30 @@ a:not([href]):not([tabindex]):hover {
   height: 100%;
   top: 0px;
   left: 0px;
-  background: #4676fa;
   opacity: 0.7;
   filter: alpha(opacity=70);
+}
+.video-promo-content .section-title span {
+  color: #4676fa;
+}
+.video-promo .lines {
+  margin: auto;
+  width: 70px;
+  position: relative;
+  border-top: 2px solid #346afe;
+  margin-top: 15px;
+}
+.video-promo .lines:before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  top: -10px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: #4676fa;
+  left: 27px;
 }
 /* ==========================================================================
     Pricing Table
