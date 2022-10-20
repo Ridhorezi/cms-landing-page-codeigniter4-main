@@ -39,13 +39,25 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Home::index');
 
-$routes->group('admin', function($routes) {
-    $routes->add('auth-login', 'Admin\Admin::login');
+$routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->add('auth-sukses', 'Admin\Admin::sukses');
-    $routes->add('auth-logout', 'Admin\Admin::logout');
+    $routes->add('dashboard', 'Admin\Dashboard::index');
+});
+
+$routes->group('admin', ['filter' => 'noauth'], function($routes) {
+    $routes->add('auth-login', 'Admin\Admin::login');
     $routes->add('auth-forgot', 'Admin\Admin::forgotpassword');
     $routes->add('auth-resset', 'Admin\Admin::ressetpassword');
 });
+
+$routes->add('admin/auth-logout', 'Admin\Admin::logout');
+
+
+
+
+
+
+
 
 
 
