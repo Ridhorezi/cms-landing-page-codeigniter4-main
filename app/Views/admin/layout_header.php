@@ -19,5 +19,12 @@
     <link rel="stylesheet" href=" <?= base_url(
         'admin'
     ) ?>/css/shared/iconly.css">
+
+    <link rel="stylesheet" href="<?= base_url(
+        'admin'
+    ) ?>/extensions/simple-datatables/style.css">
+    <link rel="stylesheet" href="<?= base_url(
+        'admin'
+    ) ?>/css/pages/simple-datatables.css">
   </head>
 <body>

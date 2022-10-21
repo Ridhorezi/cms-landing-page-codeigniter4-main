@@ -77,7 +77,9 @@
               <li class="sidebar-title">Menu</li>
 
               <li class="sidebar-item active">
-                <a href="index.html" class="sidebar-link">
+                <a href="<?= site_url(
+                    'admin/dashboard'
+                ) ?>" class="sidebar-link">
                   <i class="bi bi-grid-fill"></i>
                   <span>Dashboard</span>
                 </a>
@@ -91,7 +93,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/home/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>
@@ -105,7 +109,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/services/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>
@@ -119,7 +125,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/abouts/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>
@@ -133,7 +141,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/works/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>
@@ -147,7 +157,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/testimonials/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>
@@ -161,7 +173,9 @@
                 </div>
                 <ul class="submenu">
                   <li class="submenu-item">
-                    <a href=""><i class="bi bi-eye"></i> Show</a>
+                    <a href="<?= site_url(
+                        'admin/contacts/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
                   </li>
                 </ul>
               </li>

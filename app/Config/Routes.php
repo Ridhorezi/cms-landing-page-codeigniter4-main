@@ -42,6 +42,12 @@ $routes->get('/', 'Home::index');
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->add('auth-sukses', 'Admin\Admin::sukses');
     $routes->add('dashboard', 'Admin\Dashboard::index');
+    $routes->add('home/index', 'Admin\Home::index');
+    $routes->add('services/index', 'Admin\Services::index');
+    $routes->add('abouts/index', 'Admin\Abouts::index');
+    $routes->add('works/index', 'Admin\Works::index');
+    $routes->add('testimonials/index', 'Admin\Testimonials::index');
+    $routes->add('contacts/index', 'Admin\Contacts::index');
 });
 
 $routes->group('admin', ['filter' => 'noauth'], function($routes) {
