@@ -39,23 +39,53 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Home::index');
 
+/**
+ * Route Admin
+ */
+
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
+
+    // Auth Confirm
     $routes->add('auth-sukses', 'Admin\Admin::sukses');
+
+    // Routes Dashboard
     $routes->add('dashboard', 'Admin\Dashboard::index');
+
+    // Routes Home
     $routes->add('home/index', 'Admin\Home::index');
+    $routes->add('home/create', 'Admin\Home::create');
+    $routes->add('home/edit/(:any)', 'Admin\Home::edit/$1');
+
+    // Routes Services
     $routes->add('services/index', 'Admin\Services::index');
+
+    // Routes Abouts
     $routes->add('abouts/index', 'Admin\Abouts::index');
+
+    // Routes Works
     $routes->add('works/index', 'Admin\Works::index');
+
+    // Routes Testimonials
     $routes->add('testimonials/index', 'Admin\Testimonials::index');
+
+    // Routes Contacts
     $routes->add('contacts/index', 'Admin\Contacts::index');
+
 });
+
+/**
+ * Route Authentication
+ */
 
 $routes->group('admin', ['filter' => 'noauth'], function($routes) {
+    // Route Login
     $routes->add('auth-login', 'Admin\Admin::login');
+    // Route Forgot Password
     $routes->add('auth-forgot', 'Admin\Admin::forgotpassword');
+    // Route Resset Password
     $routes->add('auth-resset', 'Admin\Admin::ressetpassword');
 });
-
+    // Route Logout
 $routes->add('admin/auth-logout', 'Admin\Admin::logout');
 
 

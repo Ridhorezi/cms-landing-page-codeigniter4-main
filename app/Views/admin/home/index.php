@@ -1,160 +1,131 @@
 <!-- Layout Header  -->
-
 <div id="app">
-
-<!-- Layout Sidebar -->
-
-  <div id="main">
-    
-    <!-- Header Content -->
-
-    <header class="mb-3">
-      <a href="#" class="burger-btn d-block d-xl-none">
-          <i class="bi bi-justify fs-3"></i>
-      </a>
-    </header>
-    <div class="page-heading">
-    <div class="page-title">
-        <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Home Page</h3>
-                <br>
+    <!-- Layout Sidebar -->
+    <div id="main">
+        <!-- Header Content -->
+        <header class="mb-3">
+            <a href="#" class="burger-btn d-block d-xl-none">
+                <i class="bi bi-justify fs-3"></i>
+            </a>
+        </header>
+        <?php
+        $session = \Config\Services::session();
+        if ($session->getFlashData('success')) { ?>
+        <div class="alert alert-info alert-dismissible show fade">
+            <i class="bi bi-check-circle"></i> 
+            <?php echo $session->getFlashData('success'); ?>  
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php }
+        ?>
+        <div class="page-heading">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Home Page</h3>
+                        <br>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-2 order-first">
+                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                    'admin/dashboard'
+                                ) ?>">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Home</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?= site_url(
-                            'admin/dashboard'
-                        ) ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Home</li>
-                    </ol>
-                </nav>
-            </div>
+            <!-- Layout Content -->
+            <section class="section">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="buttons">
+                            <a href="<?= site_url(
+                                'admin/home/create'
+                            ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i> Add Data</a>
+                        </div>
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Title</th>
+                                    <th>quote</th>
+                                    <th>video</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($readHome as $home) {
+
+                                    $id = $home['id'];
+                                    $link_edit = site_url(
+                                        "admin/home/edit/$id"
+                                    );
+                                    $link_delete = site_url(
+                                        "admin/home/index/?aksi=hapus&id=$id"
+                                    );
+                                    ?>
+                                <tr>
+                                    <td><?= $no ?></td>
+                                    <td><?= $home['title'] ?></td>
+                                    <td><?= $home['quote'] ?></td>
+                                    <td><?= $home['video'] ?></td>
+                                    <td>
+                                        <a href="<?= $link_edit ?>" class="btn btn-success btn-sm" title='Edit'> <i
+                                                class="bi bi-pencil"></i> Edit</a>
+                                        <button onclick="confirmationHapusData('<?= $link_delete ?>')"
+                                            class="btn btn-danger btn-sm" title='Hapus'>Delete</button>
+                                    </td>
+                                </tr>
+                                <?php $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-
-    <!-- Layout Content -->
-    
-    <section class="section">
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-striped" id="table1">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>City</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Graiden</td>
-                            <td>vehicula.aliquet@semconsequat.co.uk</td>
-                            <td>076 4820 8838</td>
-                            <td>Offenburg</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dale</td>
-                            <td>fringilla.euismod.enim@quam.ca</td>
-                            <td>0500 527693</td>
-                            <td>New Quay</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nathaniel</td>
-                            <td>mi.Duis@diam.edu</td>
-                            <td>(012165) 76278</td>
-                            <td>Grumo Appula</td>
-                            <td>
-                                <span class="badge bg-danger">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Darius</td>
-                            <td>velit@nec.com</td>
-                            <td>0309 690 7871</td>
-                            <td>Ways</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Oleg</td>
-                            <td>rhoncus.id@Aliquamauctorvelit.net</td>
-                            <td>0500 441046</td>
-                            <td>Rossignol</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Kermit</td>
-                            <td>diam.Sed.diam@anteVivamusnon.org</td>
-                            <td>(01653) 27844</td>
-                            <td>Patna</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Kermit</td>
-                            <td>diam.Sed.diam@anteVivamusnon.org</td>
-                            <td>(01653) 27844</td>
-                            <td>Patna</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Jermaine</td>
-                            <td>sodales@nuncsit.org</td>
-                            <td>0800 528324</td>
-                            <td>Mold</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ferdinand</td>
-                            <td>gravida.molestie@tinciduntadipiscing.org</td>
-                            <td>(016977) 4107</td>
-                            <td>Marlborough</td>
-                            <td>
-                                <span class="badge bg-danger">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Kuame</td>
-                            <td>Quisque.purus@mauris.org</td>
-                            <td>(0151) 561 8896</td>
-                            <td>Tresigallo</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Deacon</td>
-                            <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
-                            <td>07740 599321</td>
-                            <td>Karapınar</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-     </section>
-    </div>
-  </div>
 </div>
-
 <!-- Layout Footer -->
+
+<!-- Sweatallert Confirm Delete -->
+<script>
+function confirmationHapusData(url) {
+    Swal.fire({
+        title: ' Are you sure ?',
+        text: 'You will not be able to return this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Data succesfully deleted',
+                showConfirmButton: false,
+                timer: 1800
+            })
+            setTimeout(function() {
+                window.location.href = url;
+            }, 1750);
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            Swal.fire(
+                'Cancelled',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>

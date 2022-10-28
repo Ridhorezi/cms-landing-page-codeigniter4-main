@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= $templateJudul ?></title>
@@ -19,12 +19,17 @@
     <link rel="stylesheet" href=" <?= base_url(
         'admin'
     ) ?>/css/shared/iconly.css">
-
     <link rel="stylesheet" href="<?= base_url(
         'admin'
     ) ?>/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="<?= base_url(
         'admin'
     ) ?>/css/pages/simple-datatables.css">
-  </head>
+    <link rel="stylesheet" href="<?= base_url(
+        'admin'
+    ) ?>/css/pages/summernote.css">
+    <link rel="stylesheet" href="<?= base_url(
+        'admin'
+    ) ?>/extensions/summernote/summernote-lite.css">
+</head>
 <body>
