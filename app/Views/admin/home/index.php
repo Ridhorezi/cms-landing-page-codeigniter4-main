@@ -112,11 +112,11 @@ function confirmationHapusData(url) {
                 icon: 'success',
                 title: 'Data succesfully deleted',
                 showConfirmButton: false,
-                timer: 1800
+                timer: 1750
             })
             setTimeout(function() {
                 window.location.href = url;
-            }, 1750);
+            }, 1700);
         } else if (
             result.dismiss === Swal.DismissReason.cancel
         ) {
