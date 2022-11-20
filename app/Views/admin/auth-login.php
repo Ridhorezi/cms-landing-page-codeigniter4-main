@@ -42,9 +42,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php }
+                    if ($session->getFlashData('success')) { ?>
+                    <div class="alert alert-info alert-dismissible show fade">
+                        <i class="bi bi-check-circle"></i>
+                        <?php echo $session->getFlashData('success'); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <?php }
                     ?>
                     <form action="<?= site_url(
-                        'admin/auth-login'
+                        'admin/login'
                     ) ?>" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" id="inputUsername" name="username"
@@ -77,7 +84,7 @@
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">
                         <p><a class="font-bold" href="<?= site_url(
-                            'admin/auth-forgot'
+                            'admin/forgot-password'
                         ) ?>">Forgot password ?</a></p>
                     </div>
                 </div>
@@ -94,4 +101,5 @@
     <script src="<?php echo base_url('admin'); ?>/js/bootstrap.js"></script>
     <script src="<?php echo base_url('admin'); ?>/js/app.js"></script>
 </body>
+
 </html>

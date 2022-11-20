@@ -91,6 +91,8 @@ class Admin extends BaseController
                 'akun_username' => $dataAkun['username'],
                 'akun_nama_lengkap' => $dataAkun['nama_lengkap'],
                 'akun_email' => $dataAkun['email'],
+                'akun_password' => $dataAkun['password'],
+                'akun_id' => $dataAkun['id']
             ];
             session()->set($akun);
             return redirect()
@@ -102,6 +104,9 @@ class Admin extends BaseController
 
     function sukses()
     {
+        if (session()->get('akun_username') != '') {
+            session()->setFlashData('success', 'Successfully Login');
+        }
         return redirect()->to('admin/dashboard');
     }
 
@@ -135,7 +140,7 @@ class Admin extends BaseController
                 $email = $data['email'];
                 $token = md5(date('ymdhis'));
                 $link = site_url(
-                    "admin/auth-resset/?email=$email&token=$token"
+                    "admin/resset-password/?email=$email&token=$token"
                 );
 
                 $attachment = '';
@@ -160,7 +165,7 @@ class Admin extends BaseController
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
             }
-            return redirect()->to('admin/auth-forgot');
+            return redirect()->to('admin/forgot-password');
         }
         echo view('admin/auth-forgot');
     }
@@ -226,7 +231,7 @@ class Admin extends BaseController
                 delete_cookie('cookie_username');
                 delete_cookie('cookie_password');
                 return redirect()
-                    ->to('admin/auth-login')
+                    ->to('admin/login')
                     ->withCookies();
             }
         }

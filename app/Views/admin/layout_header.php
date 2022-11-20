@@ -31,5 +31,8 @@
     <link rel="stylesheet" href="<?= base_url(
         'admin'
     ) ?>/extensions/summernote/summernote-lite.css">
+    <link rel="stylesheet" href="<?= base_url(
+        'admin'
+    ) ?>/extensions/toastify-js/src/toastify.css">
 </head>
 <body>

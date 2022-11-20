@@ -8,20 +8,30 @@
                 <i class="bi bi-justify fs-3"></i>
             </a>
         </header>
+        <?php
+        $session = \Config\Services::session();
+        if ($session->getFlashData('success')) { ?>
+        <div class="alert alert-info alert-dismissible show fade">
+            <i class="bi bi-check-circle"></i> 
+            <?php echo $session->getFlashData('success'); ?>  
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php }
+        ?>
         <div class="page-heading">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Contacts Page</h3>
+                        <h3>Contact Page</h3>
                         <br>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?= site_url(
-                            'admin/dashboard'
-                        ) ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                    'admin/dashboard'
+                                ) ?>">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contacts</li>
                             </ol>
                         </nav>
                     </div>
@@ -43,16 +53,33 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($readContacts as $contact) {
+                                    $id = $contact['id'];
+                                    $link_edit = site_url(
+                                        "admin/contacts/edit/$id"
+                                    );
+                                    $link_delete = site_url(
+                                        "admin/contacts/index/?aksi=hapus&id=$id"
+                                    );
+                                    ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>dummy</td>
-                                    <td>dummy</td>
-                                    <td>dummy</td>
-                                    <td>dummy</td>
+                                    <td><?= $no ?></td>
+                                    <td><?= $contact['name'] ?></td>
+                                    <td><?= $contact['email'] ?></td>
+                                    <td><?= $contact['subject'] ?></td>
+                                    <td><?= $contact['message'] ?></td>
                                     <td>
-                                        <span class="badge bg-success">Active</span>
+                                        <a href="<?= $link_edit ?>" class="btn btn-success btn-sm" title='Edit'> <i
+                                                class="bi bi-pencil"></i> Edit</a>
+                                        <button onclick="confirmationHapusData('<?= $link_delete ?>')"
+                                            class="btn btn-danger btn-sm" title='Hapus'><i class="bi bi-trash"></i> Delete</button>
                                     </td>
                                 </tr>
+                                <?php $no++;
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -62,3 +89,39 @@
     </div>
 </div>
 <!-- Layout Footer -->
+
+<!-- Sweatallert Confirm Delete -->
+<script>
+function confirmationHapusData(url) {
+    Swal.fire({
+        title: ' Are you sure ?',
+        text: 'You will not be able to return this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Data succesfully deleted',
+                showConfirmButton: false,
+                timer: 1750
+            })
+            setTimeout(function() {
+                window.location.href = url;
+            }, 1700);
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            Swal.fire(
+                'Cancelled',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>

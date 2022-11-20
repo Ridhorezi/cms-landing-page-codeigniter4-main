@@ -151,8 +151,24 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item has-sub">
+                    <div class="sidebar-link">
+                    <i class="bi bi-chat-left-dots-fill"></i>
+                        <span>
+                            Feedback
+                        </span>
+                    </div>
+                    <ul class="submenu">
+                        <li class="submenu-item">
+                            <a href="<?= site_url(
+                        'admin/feedbacks/index'
+                    ) ?>"><i class="bi bi-eye"></i> Show</a>
+                        </li>
+                    </ul>
+                </li>
+                                
                 <li class="sidebar-item">
-                    <a href="<?= site_url('admin/auth-logout') ?>" class="sidebar-link">
+                    <a href="<?= site_url('admin/logout') ?>" class="sidebar-link">
                         <i class="bi bi-box-arrow-left"></i>
                         <span>Logout</span>
                     </a>

@@ -14,5 +14,7 @@
 ); ?>/extensions/summernote/summernote-lite.min.js"></script>
 <script src="<?php echo base_url('admin'); ?>/js/pages/summernote.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo base_url('admin'); ?>/extensions/toastify-js/src/toastify.js"></script>
+<script src="<?php echo base_url('admin'); ?>/js/pages/toastify.js"></script>
 </body>
 </html>

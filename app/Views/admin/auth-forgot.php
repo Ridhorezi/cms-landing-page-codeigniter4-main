@@ -67,7 +67,7 @@
                     </form>
                     <div class="text-center mt-4 text-lg fs-4">
                         <p class='text-gray-600'>Back to <a href="<?= site_url(
-                            'admin/auth-login'
+                            'admin/login'
                         ) ?>" class="font-bold">Log in</a>.
                         </p>
                     </div>

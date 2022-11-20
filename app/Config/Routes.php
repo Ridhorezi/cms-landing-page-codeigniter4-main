@@ -12,7 +12,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
 }
 
 /*
- * --------------------------------------------------------------------
+ * --------------------------------------------------------------------         
  * Router Setup
  * --------------------------------------------------------------------
  */
@@ -40,6 +40,21 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 /**
+ * Route Authentication
+ */
+
+$routes->group('admin', ['filter' => 'noauth'], function($routes) {
+    // Route Login
+    $routes->add('login', 'Admin\Admin::login');
+    // Route Forgot Password
+    $routes->add('forgot-password', 'Admin\Admin::forgotpassword');
+    // Route Resset Password
+    $routes->add('resset-password', 'Admin\Admin::ressetpassword');
+});
+    // Route Logout
+    $routes->add('admin/logout', 'Admin\Admin::logout');
+
+/**
  * Route Admin
  */
 
@@ -50,6 +65,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
     // Routes Dashboard
     $routes->add('dashboard', 'Admin\Dashboard::index');
+    $routes->add('dashboard', 'Admin\Dashboard::edit');
 
     // Routes Home
     $routes->add('home/index', 'Admin\Home::index');
@@ -58,44 +74,34 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
     // Routes Services
     $routes->add('services/index', 'Admin\Services::index');
+    $routes->add('services/create', 'Admin\Services::create');
+    $routes->add('services/edit/(:any)', 'Admin\Services::edit/$1');
 
     // Routes Abouts
     $routes->add('abouts/index', 'Admin\Abouts::index');
+    $routes->add('abouts/create', 'Admin\Abouts::create');
+    $routes->add('abouts/edit/(:any)', 'Admin\Abouts::edit/$1');
 
     // Routes Works
     $routes->add('works/index', 'Admin\Works::index');
+    $routes->add('works/create', 'Admin\Works::create');
+    $routes->add('works/edit/(:any)', 'Admin\Works::edit/$1');
 
     // Routes Testimonials
     $routes->add('testimonials/index', 'Admin\Testimonials::index');
+    $routes->add('testimonials/create', 'Admin\Testimonials::create');
+    $routes->add('testimonials/edit/(:any)', 'Admin\Testimonials::edit/$1');
+
+    // Routes Feedback
+    $routes->add('feedbacks/index', 'Admin\Feedbacks::index');
+    $routes->add('feedbacks/create', 'Admin\Feedbacks::create');
+    $routes->add('feedbacks/edit/(:any)', 'Admin\Feedbacks::edit/$1');
 
     // Routes Contacts
     $routes->add('contacts/index', 'Admin\Contacts::index');
+    $routes->add('contacts/edit/(:any)', 'Admin\Contacts::edit/$1');
 
 });
-
-/**
- * Route Authentication
- */
-
-$routes->group('admin', ['filter' => 'noauth'], function($routes) {
-    // Route Login
-    $routes->add('auth-login', 'Admin\Admin::login');
-    // Route Forgot Password
-    $routes->add('auth-forgot', 'Admin\Admin::forgotpassword');
-    // Route Resset Password
-    $routes->add('auth-resset', 'Admin\Admin::ressetpassword');
-});
-    // Route Logout
-$routes->add('admin/auth-logout', 'Admin\Admin::logout');
-
-
-
-
-
-
-
-
-
 
 /*
  * --------------------------------------------------------------------

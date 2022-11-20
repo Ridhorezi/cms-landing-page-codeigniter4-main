@@ -12,8 +12,8 @@
         $session = \Config\Services::session();
         if ($session->getFlashData('success')) { ?>
         <div class="alert alert-info alert-dismissible show fade">
-            <i class="bi bi-check-circle"></i>
-            <?php echo $session->getFlashData('success'); ?>
+            <i class="bi bi-check-circle"></i> 
+            <?php echo $session->getFlashData('success'); ?>  
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <?php }
@@ -22,7 +22,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Home Page</h3>
+                        <h3>Feedback Page</h3>
                         <br>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
@@ -31,7 +31,7 @@
                                 <li class="breadcrumb-item"><a href="<?= site_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Home</li>
+                                <li class="breadcrumb-item active" aria-current="page">Feedback</li>
                             </ol>
                         </nav>
                     </div>
@@ -41,78 +41,40 @@
             <section class="section">
                 <div class="card">
                     <div class="card-body">
-                        <div class="buttons">
-                            <a href="<?= site_url(
-                                'admin/home/create'
-                            ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i> Add Data</a>
-                        </div>
                         <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Title</th>
-                                    <th>quote</th>
-                                    <th>video</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($readHome as $home) {
-
-                                    $id = $home['id'];
+                                foreach ($readFeedbacks as $feedback) {
+                                    $id = $feedback['id'];
                                     $link_edit = site_url(
-                                        "admin/home/edit/$id"
+                                        "admin/feedbacks/edit/$id"
                                     );
                                     $link_delete = site_url(
-                                        "admin/home/index/?aksi=hapus&id=$id"
+                                        "admin/feedbacks/index/?aksi=hapus&id=$id"
                                     );
                                     ?>
                                 <tr>
                                     <td><?= $no ?></td>
-                                    <td><?= $home['title'] ?></td>
-                                    <td><?= $home['quote'] ?></td>
-                                    <td><?= $home['video'] ?></td>
+                                    <td><?= $feedback['name'] ?></td>
+                                    <td><?= $feedback['email'] ?></td>
+                                    <td><?= $feedback['message'] ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#primary">
-                                            <i class="bi bi-eye"></i>
-                                            Show Video
-                                        </button>
                                         <a href="<?= $link_edit ?>" class="btn btn-success btn-sm" title='Edit'> <i
                                                 class="bi bi-pencil"></i> Edit</a>
                                         <button onclick="confirmationHapusData('<?= $link_delete ?>')"
-                                            class="btn btn-danger btn-sm" title='Hapus'> <i class="bi bi-trash"></i> Delete</button>
+                                            class="btn btn-danger btn-sm" title='Hapus'><i class="bi bi-trash"></i> Delete</button>
                                     </td>
                                 </tr>
-                                <!-- Modal Show Video -->
-                                <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel160" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    Close
-                                                    <i data-feather="x"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div
-                                                    class="embed-responsive embed-responsive-item embed-responsive-16by9 w-100">
-                                                    <iframe src="<?= base_url(
-                                                        'assets/video' .
-                                                            '/' .
-                                                            $home['video']
-                                                    ) ?>" style="width:100%; border-radius:7px;" height="300"
-                                                        allowfullscreen></iframe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <?php $no++;
                                 }
                                 ?>
@@ -124,7 +86,6 @@
         </div>
     </div>
 </div>
-
 <!-- Layout Footer -->
 
 <!-- Sweatallert Confirm Delete -->

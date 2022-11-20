@@ -93,7 +93,7 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
-defined('EMAIL_ADDRESS')      || define('EMAIL_ADDRESS', 'ridhorezi1212@gmail.com');
+defined('EMAIL_ADDRESS')      || define('EMAIL_ADDRESS', 'admgbvrj@gmail.com');
 defined('EMAIL_NAME')         || define('EMAIL_NAME', 'Super Admin');
-defined('EMAIL_PASSWORD')     || define('EMAIL_PASSWORD', 'vnlyywaetwxgozla');
+defined('EMAIL_PASSWORD')     || define('EMAIL_PASSWORD', 'pslpxllqkvqbaknp');
 

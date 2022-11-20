@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="./assets/css/menu_sideslide.css">
     <link rel="stylesheet" href="./assets/css/main.css">    
     <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <body>
@@ -51,7 +53,6 @@
         </nav> 
         <button class="close-button" id="close-button"><i class="lnr lnr-cross"></i></button>
       </div>  
-
   	<!-- Header Section Start -->
     <header id="video-area" data-stellar-background-ratio="0.5" class="header-area">    
       <div id="block" data-vide-bg="./assets/video/video.mp4"></div>
@@ -79,8 +80,26 @@
         </div> 
       </div>      
     </header>
-    <!-- Header Section End --> 
-
+  </div>
+  <input type="checkbox" id="check"> 
+      <label class="chat-btn" for="check">
+         <i class="fa fa-commenting-o comment"></i> 
+         <i class="fa fa-close close"></i> 
+      </label> 
+    <div class="wrapperr">
+       <div class="header">
+         <h6>Send Your Feedback 👋</h6>
+       </div> 
+    <div class="text-center p-2">
+       <span>Please fill in your opinion about this website</span>
+       <br>
+       <span>Your opinion can be influential in our future service</span>
+    </div> <div class="chat-form"> 
+      <input type="text" class="form-control" placeholder="Name">
+      <input type="text" class="form-control" placeholder="Email"> 
+      <textarea class="form-control" placeholder="Your Text Message"></textarea>
+      <button class="btn btn-success btn-block">Submit</button> </div>
+   </div>
     <!-- Services Section Start -->
     <section id="services" class="section">
       <div class="container">

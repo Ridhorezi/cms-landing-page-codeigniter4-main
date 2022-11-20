@@ -1,14 +1,14 @@
 <?php
 namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
-use App\Models\ContactModel;
+use App\Models\FeedbackModel;
 
-class Contacts extends BaseController
+class Feedbacks extends BaseController
 {
 
     function __construct() {
         $this->validation = \Config\Services::validation();
-        $this->ContactModel = new ContactModel();
+        $this->FeedbackModel = new FeedbackModel();
     }
 
     function index()
@@ -17,11 +17,11 @@ class Contacts extends BaseController
         /** For Delete Data */
 
         if ($this->request->getVar('id')) {
-            $dataContacts = $this->ContactModel->getContacts($this->request->getVar('id'));
-            if ($dataContacts['id']) {
-                $action = $this->ContactModel->deleteContact($this->request->getVar('id'));
+            $dataFeedbacks = $this->FeedbackModel->getFeedbacks($this->request->getVar('id'));
+            if ($dataFeedbacks['id']) {
+                $action = $this->FeedbackModel->deleteFeedback($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/contacts/index");
+                    return redirect()->to("admin/feedbacks/index");
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -30,11 +30,11 @@ class Contacts extends BaseController
 
         $data = [];
         
-        $data ['templateJudul'] = 'Contacts Page';
+        $data ['templateJudul'] = 'Feedback | Page';
 
-        $model = new ContactModel;
+        $model = new FeedbackModel;
 
-        $data['readContacts'] = $model->readContacts();
+        $data['readFeedbacks'] = $model->readFeedbacks();
 
         /** Layout Header */
         echo view('admin/layout_header', $data);
@@ -43,7 +43,7 @@ class Contacts extends BaseController
         echo view('admin/layout_sidebar', $data);
 
         /** Dashboard */
-        echo view('admin/contacts/index', $data);
+        echo view('admin/feedbacks/index', $data);
 
         /** Layout Footer */
         echo view('admin/layout_footer', $data);
@@ -53,15 +53,15 @@ class Contacts extends BaseController
     {
         $edit_page = [];
 
-        $edit_page ['templateJudul'] = 'Edit Page';
+        $edit_page ['templateJudul'] = 'Edit | Page';
 
-        $dataContacts = $this->ContactModel->editContact($id);
+        $dataFeedbacks = $this->FeedbackModel->editFeedback($id);
 
-        if (empty($dataContacts)) {
-            return redirect()->to('admin/contacts/edit');
+        if (empty($dataFeedbacks)) {
+            return redirect()->to('admin/feedbacks/edit');
         }
 
-        $data = $dataContacts;
+        $data = $dataFeedbacks;
 
         if ($this->request->getMethod() == 'post') {
 
@@ -80,12 +80,6 @@ class Contacts extends BaseController
                         'required' => 'Email cannot be empty'
                     ],
                 ],
-                'subject' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Subject cannot be empty'
-                    ],
-                ],
                 'message' => [
                     'rules' => 'required',
                     'errors' => [
@@ -100,18 +94,17 @@ class Contacts extends BaseController
                 $record = [
                     'name'     => $this->request->getVar('name'),
                     'email'     => $this->request->getVar('email'),
-                    'subject'     => $this->request->getVar('subject'),
                     'message' => $this->request->getVar('message'),
                     'id'        => $id
                 ];
-                $action = $this->ContactModel->insertContact($record);
+                $action = $this->FeedbackModel->insertFeedback($record);
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/contacts/index');
+                    return redirect()->to('admin/feedbacks/index');
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/contacts/edit');
+                    return redirect()->to('admin/feedbacks/edit');
                 }
             }
         }
@@ -123,7 +116,7 @@ class Contacts extends BaseController
          echo view('admin/layout_sidebar', $edit_page);
  
          /** Home Create */
-         echo view('admin/contacts/edit', $data);
+         echo view('admin/feedbacks/edit', $data);
  
          /** Layout Footer */
          echo view('admin/layout_footer', $edit_page);

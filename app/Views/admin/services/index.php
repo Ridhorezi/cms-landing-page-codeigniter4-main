@@ -8,6 +8,16 @@
                 <i class="bi bi-justify fs-3"></i>
             </a>
         </header>
+        <?php
+        $session = \Config\Services::session();
+        if ($session->getFlashData('success')) { ?>
+        <div class="alert alert-info alert-dismissible show fade">
+            <i class="bi bi-check-circle"></i> 
+            <?php echo $session->getFlashData('success'); ?>  
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php }
+        ?>
         <div class="page-heading">
             <div class="page-title">
                 <div class="row">
@@ -19,8 +29,8 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?= site_url(
-                            'admin/dashboard'
-                        ) ?>">Dashboard</a></li>
+                                    'admin/dashboard'
+                                ) ?>">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Services</li>
                             </ol>
                         </nav>
@@ -31,28 +41,50 @@
             <section class="section">
                 <div class="card">
                     <div class="card-body">
+                        <div class="buttons">
+                            <a href="<?= site_url(
+                                'admin/services/create'
+                            ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i>Add Data</a>
+                        </div>
                         <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Categori</th>
                                     <th>Title</th>
-                                    <th>Quotes</th>
+                                    <th>Quote</th>
+                                    <th>Category</th>
                                     <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($readServices as $service) {
+                                    $id = $service->id;
+                                    $link_edit = site_url(
+                                        "admin/services/edit/$id"
+                                    );
+                                    $link_delete = site_url(
+                                        "admin/services/index/?aksi=hapus&id=$id"
+                                    );
+                                    ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>dumy</td>
-                                    <td>dumy</td>
-                                    <td>dumy</td>
-                                    <td>dumy</td>
+                                    <td><?= $no ?></td>
+                                    <td><?= $service->title;?></td>
+                                    <td><?= $service->quotes; ?></td>
+                                    <td><?= $service->category_name; ?></td>
+                                    <td><?= $service->description; ?></td>
                                     <td>
-                                        <span class="badge bg-success">Active</span>
+                                        <a href="<?= $link_edit ?>" class="btn btn-success btn-sm" title='Edit'> <i
+                                                class="bi bi-pencil"></i> Edit</a>
+                                        <button onclick="confirmationHapusData('<?= $link_delete ?>')"
+                                            class="btn btn-danger btn-sm" title='Delete'> <i class="bi bi-trash"></i> Delete</button>
                                     </td>
                                 </tr>
+                                <?php $no++;
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -62,3 +94,39 @@
     </div>
 </div>
 <!-- Layout Footer -->
+
+<!-- Sweatallert Confirm Delete -->
+<script>
+function confirmationHapusData(url) {
+    Swal.fire({
+        title: 'Are you sure ?',
+        text: 'You will not be able to return this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Data succesfully deleted',
+                showConfirmButton: false,
+                timer: 1750
+            })
+            setTimeout(function() {
+                window.location.href = url;
+            }, 1700);
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            Swal.fire(
+                'Cancelled',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>
