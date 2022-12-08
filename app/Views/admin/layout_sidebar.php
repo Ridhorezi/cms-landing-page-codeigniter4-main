@@ -1,11 +1,11 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between ">
                 <div class="auth-logo">
-                    <a href="#"><img src="<?= base_url(
+                    <a class="h5 text-primary-600" href=""><img src="<?= base_url(
                             'admin'
-                        ) ?>/images/logo/logo.svg" alt="Logo"></a>
+                        ) ?>/images/logo/favicon.png" alt="Logo"> Gbvrj Group</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

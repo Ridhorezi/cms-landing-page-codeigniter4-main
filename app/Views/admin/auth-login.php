@@ -21,9 +21,9 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="#"><img src="<?= base_url(
+                        <a class="h5 text-primary-600" href="#"><img src="<?= base_url(
                             'admin'
-                        ) ?>/images/logo/logo.svg" alt="Logo"></a>
+                        ) ?>/images/logo/favicon.png" alt="Logo"> Gbvrj Solutions Technology</a>
                     </div>
                     <?php
                     $session = \Config\Services::session();
