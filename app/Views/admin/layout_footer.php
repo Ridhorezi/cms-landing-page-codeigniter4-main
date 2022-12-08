@@ -13,5 +13,6 @@
     'admin'
 ); ?>/extensions/summernote/summernote-lite.min.js"></script>
 <script src="<?php echo base_url('admin'); ?>/js/pages/summernote.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
