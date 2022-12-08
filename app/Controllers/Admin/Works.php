@@ -45,7 +45,7 @@ class Works extends BaseController
                     $this->request->getVar('id')
                 );
                 if ($action == true) {
-                    return redirect()->to('admin/works/index');
+                    return redirect()->to(base_url('admin/works/index'));
                 } else {
                     session()->setFlashdata('warning', [
                         'Failed to delete data',
@@ -92,6 +92,12 @@ class Works extends BaseController
                         'required' => 'only image file are allowed',
                     ],
                 ],
+                'filter' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'filter cannot be empty',
+                    ],
+                ],
             ];
 
             $file = $this->request->getFile('image');
@@ -112,6 +118,7 @@ class Works extends BaseController
                     'works_category_id' => $this->request->getVar(
                         'works_category_id'
                     ),
+                    'filter' => $this->request->getVar('filter'),
                     'image' => $image,
                 ];
                 $action = $this->WorkModel->insertWork($record);
@@ -125,13 +132,13 @@ class Works extends BaseController
                         'success',
                         'Data Successfully Saved'
                     );
-                    return redirect()->to('admin/works/index');
+                    return redirect()->to(base_url('admin/works/index'));
                 } else {
                     session()->setFlashdata(
                         'warning',
                         'Data Unsuccessfully Saved'
                     );
-                    return redirect()->to('admin/works/create');
+                    return redirect()->to(base_url('admin/works/create'));
                 }
             }
         }
@@ -162,7 +169,7 @@ class Works extends BaseController
         $dataWorks = $this->WorkModel->editWork($id);
 
         if (empty($dataWorks)) {
-            return redirect()->to('admin/works/edit');
+            return redirect()->to(base_url('admin/works/edit'));
         }
 
         $data = $dataWorks;
@@ -198,6 +205,12 @@ class Works extends BaseController
                         'required' => 'only image file are allowed',
                     ],
                 ],
+                'filter' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Filter cannot be empty',
+                    ],
+                ],
             ];
 
             $file = $this->request->getFile('image');
@@ -218,6 +231,7 @@ class Works extends BaseController
                     'works_category_id' => $this->request->getVar(
                         'works_category_id'
                     ),
+                    'filter' => $this->request->getVar('filter'),
                     'image' => $image,
                     'id'    => $id
                 ];
@@ -235,13 +249,13 @@ class Works extends BaseController
                         'success',
                         'Data Successfully Updated'
                     );
-                    return redirect()->to('admin/works/index');
+                    return redirect()->to(base_url('admin/works/index'));
                 } else {
                     session()->setFlashdata(
                         'warning',
                         'Data Unsuccessfully Updated'
                     );
-                    return redirect()->to('admin/works/edit');
+                    return redirect()->to(base_url('admin/works/edit'));
                 }
             }
         }

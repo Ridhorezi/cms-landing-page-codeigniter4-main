@@ -18,10 +18,10 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/works/index'
                                 ) ?>">Works</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Add Data</li>
@@ -81,6 +81,17 @@
                                                             <?= $list->category_name; ?></option>
                                                         <?php endforeach; ?>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="filter">Filter</label>
+                                                    <input type="text" class="form-control" placeholder="Input Filter"
+                                                        name="filter" value="<?= isset(
+                                                            $filter
+                                                        )
+                                                            ? $filter
+                                                            : '' ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-12">

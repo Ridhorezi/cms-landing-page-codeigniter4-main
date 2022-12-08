@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,5 +35,17 @@
     <link rel="stylesheet" href="<?= base_url(
         'admin'
     ) ?>/extensions/toastify-js/src/toastify.css">
+        <style>
+    .size-text {
+        font-size: 21.3px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .size-text {
+            font-size: 15px;
+        }
+    }
+    </style>
 </head>
+
 <body>

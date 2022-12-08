@@ -50,7 +50,7 @@
                     </div>
                     <?php }
                     ?>
-                    <form action="<?= site_url(
+                    <form action="<?= base_url(
                         'admin/login'
                     ) ?>" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -83,7 +83,7 @@
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">
-                        <p><a class="font-bold" href="<?= site_url(
+                        <p><a class="font-bold" href="<?= base_url(
                             'admin/forgot-password'
                         ) ?>">Forgot password ?</a></p>
                     </div>

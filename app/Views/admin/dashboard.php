@@ -105,11 +105,10 @@
                                         <?php }
                                         ?>
                                     </div>
-                                    <form method="post" action="" enctype="multipart/form-data">
+                                    <form method="post" action="user" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input type="hidden" name="id" class="form-control"
-                                                    value="<?= session()->get(
+                                                <input type="hidden" name="id" class="form-control" value="<?= session()->get(
                                                         'akun_id'
                                                     ) ?>">
                                             </div>
@@ -123,8 +122,7 @@
                                             <label>Full Name: </label>
                                             <div class="form-group">
                                                 <input type="text" placeholder="Full Name" name="fullname"
-                                                    class="form-control"
-                                                    value="<?= session()->get(
+                                                    class="form-control" value="<?= session()->get(
                                                         'akun_nama_lengkap'
                                                     ) ?>">
                                             </div>
@@ -138,9 +136,8 @@
                                             <label>Password: </label>
                                             <div class="form-group">
                                                 <input type="password" placeholder="Password" name="password"
-                                                    class="form-control" value="">
+                                                    class="form-control" required>
                                             </div>
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
@@ -161,26 +158,25 @@
                 </div>
             </nav>
         </header>
-        <div class="page-heading">
-            <!-- <h3>Dashboard</h3> -->
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3 class="ms-1">Dashboard</h3>
-                        <p class="text-subtitle text-muted"></p>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3 class="ms-1">Dashboard</h3>
+                    <p class="text-subtitle text-muted"></p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="<?= site_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"></li>
-                            </ol>
-                        </nav>
-                    </div>
+                            <li class="breadcrumb-item active" aria-current="page"></li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
+        </div>
+        <div class="page-content">
             <section class="row">
                 <div class="col-12 col-lg-9">
                     <div class="row">
@@ -196,9 +192,9 @@
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                             <h6 class="text-muted font-semibold">
-                                                Profile Views
+                                                Visitor
                                             </h6>
-                                            <h6 class="font-extrabold mb-0">112.000</h6>
+                                            <h6 class="font-extrabold mb-0"><?= $totalVisitors; ?></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -248,32 +244,35 @@
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
                                     <img src="<?= base_url(
-                                        'admin'
-                                    ) ?>/images/faces/1.jpg" alt="Face 1" />
+                                            'admin'
+                                        ) ?>/images/faces/1.jpg" alt="Face 1" />
                                 </div>
                                 <div class="ms-3 name">
-                                    <h5 class="font-bold">Login As: </h5>
+                                    <h5 class="font-bold">Login As : </h5>
                                     <h6 class="text-muted mb-0"> <?php echo session()->get(
-                                        'akun_nama_lengkap'
-                                    ); ?>
+                                            'akun_nama_lengkap'
+                                        ); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="section">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Hello Administrator <i class="bi bi-stars text-primary"></i></h4>
-                        Welcome to the landing page data management dashboard of PT. GBVRJ SOLUTIONS TECHNOLOGY <i></i>
-                        <br>
-                        In this system you can manage the front page of the content management system company profile
-                        PT. GBVRJ SOLUTIONS TECHNOLOGY <i class="bi bi-laptop"></i>
-                    </div>
-                </div>
-            </section>
         </div>
+        <section class="section">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <h4 class="card-title">Hello Administrator <i class="bi bi-stars text-primary"></i></h4> -->
+                    <h4 class="ms-1">Hello Administrator <i class="bi bi-stars text-primary"></i></h4>
+                    <p class="size-text">
+                        Welcome to the landing page data management dashboard of PT.GBVRJ SOLUTIONS
+                        TECHNOLOGY, 
+                        In this system you can manage the front page of the content profile PT.GBVRJ SOLUTIONS
+                        TECHNOLOGY.
+                    </p>
+                </div>
+            </div>
+        </section>
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                 <div class="float-start">
@@ -285,4 +284,4 @@
                 </div>
             </div>
         </footer>
-        <!-- Layout Footer -->
+<!-- Layout Footer -->

@@ -18,10 +18,10 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/services/index'
                                 ) ?>">Services</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
@@ -73,6 +73,17 @@
                                             </div>
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
+                                                    <label for="label_icon">Title</label>
+                                                    <input type="text" class="form-control" placeholder="Input Label Icon"
+                                                        name="label_icon" value="<?= isset(
+                                                            $label_icon
+                                                        )
+                                                            ? $label_icon
+                                                            : '' ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-12">
+                                                <div class="form-group">
                                                     <label for="services_category_id">Category</label>
                                                     <select name="services_category_id" class="form-select" id="basicSelect">
                                                         <option value=""></option>
@@ -93,12 +104,12 @@
                                             </div>
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
-                                                    <label for="quotes">Quote</label>
+                                                <label for="quotes">Quote</label>
                                                     <textarea class="form-control" placeholder="Input Quotes"
                                                         name="quotes" id="summernote">
-                                                        <?= isset($quotes)
-                                                            ? $quotes
-                                                            : '' ?>
+                                                    <?= isset($quotes)
+                                                        ? $quotes
+                                                        : '' ?>
                                                     </textarea>
                                                 </div>
                                             </div>
@@ -106,7 +117,7 @@
                                                 <div class="form-group">
                                                     <label for="description">Description</label>
                                                     <textarea class="form-control" placeholder="Input Quotes"
-                                                        name="description" id="hint" value="">
+                                                        name="description" id="hint">
                                                         <?= isset($description)
                                                             ? $description
                                                             : '' ?>

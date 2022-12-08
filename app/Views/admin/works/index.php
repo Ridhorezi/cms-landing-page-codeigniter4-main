@@ -28,7 +28,7 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Works</li>
@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="buttons">
-                            <a href="<?= site_url(
+                            <a href="<?= base_url(
                                 'admin/works/create'
                             ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i>Add Data</a>
                         </div>
@@ -53,6 +53,7 @@
                                     <th>Title</th>
                                     <th>Quote</th>
                                     <th>Category</th>
+                                    <th>Filter</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>
@@ -63,10 +64,10 @@
                                 foreach ($readWorks as $work) {
 
                                     $id = $work->id;
-                                    $link_edit = site_url(
+                                    $link_edit = base_url(
                                         "admin/works/edit/$id"
                                     );
-                                    $link_delete = site_url(
+                                    $link_delete = base_url(
                                         "admin/works/index/?aksi=hapus&id=$id"
                                     );
                                     ?>
@@ -75,6 +76,7 @@
                                     <td><?= $work->title ?></td>
                                     <td><?= $work->quote ?></td>
                                     <td><?= $work->category_name ?></td>
+                                    <td><?= $work->filter ?></td>
                                     <td><?= $work->image ?></td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"

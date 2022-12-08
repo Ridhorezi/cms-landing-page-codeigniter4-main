@@ -21,7 +21,7 @@ class Abouts extends BaseController
             if ($dataAbout['id']) {
                 $action = $this->AboutModel->deleteAbout($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/abouts/index");
+                    return redirect()->to(base_url('admin/abouts/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -90,10 +90,10 @@ class Abouts extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Saved');
-                    return redirect()->to('admin/abouts/index');
+                    return redirect()->to(base_url('admin/abouts/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Saved');
-                    return redirect()->to('admin/abouts/create');
+                    return redirect()->to(base_url('admin/abouts/create'));
                 }
             }
         }
@@ -122,7 +122,7 @@ class Abouts extends BaseController
         $dataAbout = $this->AboutModel->editAbout($id);
 
         if (empty($dataAbout)) {
-            return redirect()->to('admin/abouts/edit');
+            return redirect()->to(base_url('admin/abouts/edit'));
         }
 
         $data = $dataAbout;
@@ -165,10 +165,10 @@ class Abouts extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/abouts/index');
+                    return redirect()->to(base_url('admin/abouts/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/abouts/edit');
+                    return redirect()->to(base_url('admin/abouts/edit'));
                 }
             }
         }

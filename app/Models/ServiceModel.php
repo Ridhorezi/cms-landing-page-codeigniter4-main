@@ -5,9 +5,21 @@ use CodeIgniter\Model;
 
 class ServiceModel extends Model
 {
-    protected $table            = 'services';
-    protected $primaryKey       = 'id';
-    protected $allowedFields    = ['id','services_category_id','title','description','quote'];
+    protected $table = 'services';
+    protected $primaryKey = 'id';
+    protected $allowedFields = [
+        'id',
+        'services_category_id',
+        'title',
+        'label_icon',
+        'description',
+        'quotes',
+    ];
+
+    /**
+     * Model
+     * Backend
+     **/
 
     function insertService($data)
     {
@@ -38,7 +50,11 @@ class ServiceModel extends Model
     {
         $builder = $this->db->table('services');
         $builder->select('*');
-        $builder->join('category', 'category_id = services_category_id','left');
+        $builder->join(
+            'category',
+            'category_id = services_category_id',
+            'left'
+        );
         return $builder->get();
     }
 
@@ -46,7 +62,11 @@ class ServiceModel extends Model
     {
         $builder = $this->table($this->table);
         $builder->select('*');
-        $builder->join('category', 'category_id = services_category_id','left');
+        $builder->join(
+            'category',
+            'category_id = services_category_id',
+            'left'
+        );
         $builder->where('id', $id);
         $query = $builder->get();
         return $query->getRowArray();
@@ -63,4 +83,30 @@ class ServiceModel extends Model
         }
     }
 
+    /**
+     * Model
+     * Frontend
+     **/
+
+    public function getServicesTitle()
+    {
+        $query = $this->db->query(
+            'SELECT title, quotes FROM services GROUP by title desc limit 1'
+        );
+        $result = $query;
+        return $result;
+    }
+
+    public function getListServices($title = null)
+    {
+        $builder = $this->db->table('services');
+        $builder->select('*');
+        $builder->where(['title' => $title]);
+        $builder->join(
+            'category',
+            'category_id = services_category_id',
+            'left'
+        );
+        return $builder->get();
+    }
 }

@@ -66,7 +66,7 @@
                             class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Send</button>
                     </form>
                     <div class="text-center mt-4 text-lg fs-4">
-                        <p class='text-gray-600'>Back to <a href="<?= site_url(
+                        <p class='text-gray-600'>Back to <a href="<?= base_url(
                             'admin/login'
                         ) ?>" class="font-bold">Log in</a>.
                         </p>

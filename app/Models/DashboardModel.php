@@ -8,7 +8,7 @@ class DashboardModel extends Model {
 
     protected $table = 'admin';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['username', 'fullname', 'email', 'password'];
+    protected $allowedFields = ['username', 'fullname', 'email', 'password','created_at'];
 
     public function updateData($record) {
         $builder = $this->table($this->table);

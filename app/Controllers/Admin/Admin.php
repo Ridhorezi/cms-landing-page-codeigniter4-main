@@ -30,7 +30,7 @@ class Admin extends BaseController
                 delete_cookie('cookie_username');
                 delete_cookie('cookie_password');
 
-                return redirect()->to('admin/auth-login');
+                return redirect()->to(base_url('admin/auth-login'));
             }
 
             $akun = [
@@ -40,7 +40,7 @@ class Admin extends BaseController
             ];
 
             session()->set($akun);
-            return redirect()->to('admin/auth-sukses');
+            return redirect()->to(base_url('admin/auth-sukses'));
         }
         $data = [];
         if ($this->request->getMethod() == 'post') {
@@ -63,7 +63,7 @@ class Admin extends BaseController
                     'warning',
                     $this->validation->getErrors()
                 );
-                return redirect()->to('admin/auth-login');
+                return redirect()->to(base_url('admin/auth-login'));
             }
 
             $username = $this->request->getVar('username');
@@ -75,7 +75,7 @@ class Admin extends BaseController
                 $err[] = 'Password not found';
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
-                return redirect()->to('admin/auth-login');
+                return redirect()->to(base_url('admin/auth-login'));
             }
 
             if ($remember_me == '1') {
@@ -89,14 +89,14 @@ class Admin extends BaseController
 
             $akun = [
                 'akun_username' => $dataAkun['username'],
-                'akun_nama_lengkap' => $dataAkun['nama_lengkap'],
+                'akun_nama_lengkap' => $dataAkun['fullname'],
                 'akun_email' => $dataAkun['email'],
                 'akun_password' => $dataAkun['password'],
                 'akun_id' => $dataAkun['id']
             ];
             session()->set($akun);
             return redirect()
-                ->to('admin/auth-sukses')
+                ->to(base_url('admin/auth-sukses'))
                 ->withCookies();
         }
         echo view('admin/auth-login', $data);
@@ -107,7 +107,7 @@ class Admin extends BaseController
         if (session()->get('akun_username') != '') {
             session()->setFlashData('success', 'Successfully Login');
         }
-        return redirect()->to('admin/dashboard');
+        return redirect()->to(base_url('admin/dashboard'));
     }
 
     function logout()
@@ -165,7 +165,7 @@ class Admin extends BaseController
                 session()->setFlashData('username', $username);
                 session()->setFlashData('warning', $err);
             }
-            return redirect()->to('admin/forgot-password');
+            return redirect()->to(base_url('admin/forgot-password'));
         }
         echo view('admin/auth-forgot');
     }
@@ -231,7 +231,7 @@ class Admin extends BaseController
                 delete_cookie('cookie_username');
                 delete_cookie('cookie_password');
                 return redirect()
-                    ->to('admin/login')
+                    ->to(base_url('admin/login'))
                     ->withCookies();
             }
         }

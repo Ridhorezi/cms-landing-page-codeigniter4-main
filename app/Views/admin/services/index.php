@@ -28,7 +28,7 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Services</li>
@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="buttons">
-                            <a href="<?= site_url(
+                            <a href="<?= base_url(
                                 'admin/services/create'
                             ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i>Add Data</a>
                         </div>
@@ -51,6 +51,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Title</th>
+                                    <th>Label Icon</th>
                                     <th>Quote</th>
                                     <th>Category</th>
                                     <th>Description</th>
@@ -62,16 +63,17 @@
                                 $no = 1;
                                 foreach ($readServices as $service) {
                                     $id = $service->id;
-                                    $link_edit = site_url(
+                                    $link_edit = base_url(
                                         "admin/services/edit/$id"
                                     );
-                                    $link_delete = site_url(
+                                    $link_delete = base_url(
                                         "admin/services/index/?aksi=hapus&id=$id"
                                     );
                                     ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $service->title;?></td>
+                                    <td><?= $service->label_icon;?></td>
                                     <td><?= $service->quotes; ?></td>
                                     <td><?= $service->category_name; ?></td>
                                     <td><?= $service->description; ?></td>

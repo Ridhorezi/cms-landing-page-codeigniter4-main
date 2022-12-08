@@ -21,7 +21,7 @@ class Feedbacks extends BaseController
             if ($dataFeedbacks['id']) {
                 $action = $this->FeedbackModel->deleteFeedback($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/feedbacks/index");
+                    return redirect()->to(base_url('admin/feedbacks/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -58,7 +58,7 @@ class Feedbacks extends BaseController
         $dataFeedbacks = $this->FeedbackModel->editFeedback($id);
 
         if (empty($dataFeedbacks)) {
-            return redirect()->to('admin/feedbacks/edit');
+            return redirect()->to(base_url('admin/feedbacks/edit'));
         }
 
         $data = $dataFeedbacks;
@@ -101,10 +101,10 @@ class Feedbacks extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/feedbacks/index');
+                    return redirect()->to(base_url('admin/feedbacks/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/feedbacks/edit');
+                    return redirect()->to(base_url('admin/feedbacks/edit'));
                 }
             }
         }

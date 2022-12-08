@@ -23,7 +23,7 @@ var t=e.target;var n=ssc_overflowingAncestor(t);if(!n||e.defaultPrevented||ssc_i
 var r=e.wheelDeltaX||0;var i=e.wheelDeltaY||0;if(!r&&!i){i=e.wheelDelta||0}
 if(Math.abs(r)>1.2){r*=ssc_stepsize/120}
 if(Math.abs(i)>1.2){i*=ssc_stepsize/120}
-ssc_scrollArray(n,-r,-i);e.preventDefault()}
+ssc_scrollArray(n,-r,-i);}
 function ssc_keydown(e){var t=e.target;var n=e.ctrlKey||e.altKey||e.metaKey;if(/input|textarea|embed/i.test(t.nodeName)||t.isContentEditable||e.defaultPrevented||n){return true}
 if(ssc_isNodeName(t,"button")&&e.keyCode===ssc_key.spacebar){return true}
 var r,i=0,s=0;var o=ssc_overflowingAncestor(ssc_activeElement);var u=o.clientHeight;if(o==document.body){u=window.innerHeight}

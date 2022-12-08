@@ -9,7 +9,12 @@ class AboutModel extends Model
     protected $table = 'abouts';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['title','quote','url_video'];
+    protected $allowedFields = ['title', 'quote', 'url_video'];
+
+    /**
+     * Model
+     * Backend
+     **/
 
     function insertAbout($data)
     {
@@ -32,11 +37,11 @@ class AboutModel extends Model
 
     function readAbout($id = false)
     {
-        if($id === false){
+        if ($id === false) {
             return $this->findAll();
-        }else{
+        } else {
             return $this->getWhere(['id' => $id]);
-        }   
+        }
     }
 
     function editAbout($id)
@@ -66,4 +71,25 @@ class AboutModel extends Model
         }
     }
 
+    /**
+     * Model
+     * Frontend
+     **/
+
+    public function getAboutsTitle()
+    {
+        $query = $this->db->query(
+            'SELECT title, quote FROM abouts GROUP by title desc limit 1'
+        );
+        $result = $query;
+        return $result;
+    }
+
+    public function getListAbouts($title = null)
+    {
+        $builder = $this->db->table('abouts');
+        $builder->select('*');
+        $builder->where(['title' => $title]);
+        return $builder->get();
+    }
 }

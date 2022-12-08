@@ -2,6 +2,7 @@
 namespace App\Controllers\Admin;
 use App\Models\DashboardModel;
 use App\Models\AdminModel;
+use App\Models\VisitorModel;
 use App\Models\ContactModel;
 use App\Models\FeedbackModel;
 use App\Controllers\BaseController;
@@ -12,6 +13,7 @@ class Dashboard extends BaseController
     {
         $this->DashboardModel = new DashboardModel();
         $this->AdminModel = new AdminModel();
+        $this->VisitorModel = new VisitorModel();
         $this->ContactModel = new ContactModel();
         $this->FeedbackModel = new FeedbackModel();
     }
@@ -19,6 +21,7 @@ class Dashboard extends BaseController
     {
         $data = [];
 
+        $data['totalVisitors'] = $this->VisitorModel->totalVisitors();
         $data['totalMessages'] = $this->ContactModel->totalMessages();
         $data['totalFeedbacks'] = $this->FeedbackModel->totalFeedbacks();
 
@@ -37,7 +40,7 @@ class Dashboard extends BaseController
         echo view('admin/layout_footer', $data);
     }
 
-    function edit()
+    function editProfile()
     {
         if ($this->request->getMethod() == 'post') {
 
@@ -86,7 +89,6 @@ class Dashboard extends BaseController
                         $this->request->getVar('password'),
                         PASSWORD_DEFAULT
                     ),
-                    'id' => $this->request->getVar('id'),
                 ];
                 $action = $this->AdminModel->updateAdmin($record);
                 session()->setFlashdata(

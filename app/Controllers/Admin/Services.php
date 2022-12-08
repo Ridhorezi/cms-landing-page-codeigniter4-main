@@ -44,7 +44,7 @@ class Services extends BaseController
             if ($dataServices) {
                 $action = $this->ServiceModel->deleteService($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/services/index");
+                    return redirect()->to(base_url('admin/services/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -72,6 +72,12 @@ class Services extends BaseController
                         'required' => 'Title cannot be empty'
                     ],
                 ],
+                'label_icon' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Label icon cannot be empty'
+                    ],
+                ],
                 'quotes' => [
                     'rules' => 'required',
                     'errors' => [
@@ -97,6 +103,7 @@ class Services extends BaseController
             } else {
                 $record = [
                     'title' => $this->request->getVar('title'),
+                    'label_icon' => $this->request->getVar('label_icon'),
                     'quotes' => $this->request->getVar('quotes'),
                     'services_category_id' => $this->request->getVar('services_category_id'),
                     'description' => $this->request->getVar('description'),
@@ -105,10 +112,10 @@ class Services extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Saved');
-                    return redirect()->to('admin/services/index');
+                    return redirect()->to(base_url('admin/services/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Saved');
-                    return redirect()->to('admin/services/create');
+                    return redirect()->to(base_url('admin/services/create'));
                 }
             }
         } 
@@ -140,7 +147,7 @@ class Services extends BaseController
         $dataServices = $this->ServiceModel->editService($id);
 
         if (empty($dataServices)) {
-            return redirect()->to('admin/services/edit');
+            return redirect()->to(base_url('admin/services/edit'));
         }
 
         $data = $dataServices;
@@ -162,6 +169,12 @@ class Services extends BaseController
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Title cannot be empty'
+                    ],
+                ],
+                'label_icon' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Label icon cannot be empty'
                     ],
                 ],
                 'quotes' => [
@@ -189,6 +202,7 @@ class Services extends BaseController
             } else {
                 $record = [
                     'title' => $this->request->getVar('title'),
+                    'label_icon' => $this->request->getVar('label_icon'),
                     'quotes' => $this->request->getVar('quotes'),
                     'services_category_id' => $this->request->getVar('services_category_id'),
                     'description' => $this->request->getVar('description'),
@@ -198,10 +212,10 @@ class Services extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/services/index');
+                    return redirect()->to(base_url('admin/services/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/services/edit');
+                    return redirect()->to(base_url('admin/services/edit'));
                 }
             }
         }

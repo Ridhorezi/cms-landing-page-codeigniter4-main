@@ -5,9 +5,21 @@ use CodeIgniter\Model;
 
 class WorkModel extends Model
 {
-    protected $table            = 'works';
-    protected $primaryKey       = 'id';
-    protected $allowedFields    = ['id','works_category_id','title','quote','image'];
+    protected $table = 'works';
+    protected $primaryKey = 'id';
+    protected $allowedFields = [
+        'id',
+        'works_category_id',
+        'title',
+        'quote',
+        'image',
+        'filter',
+    ];
+
+    /**
+     * Model
+     * Backend
+     **/
 
     function insertWork($data)
     {
@@ -38,7 +50,7 @@ class WorkModel extends Model
     {
         $builder = $this->db->table('works');
         $builder->select('*');
-        $builder->join('category', 'category_id = works_category_id','left');
+        $builder->join('category', 'category_id = works_category_id', 'left');
         return $builder->get();
     }
 
@@ -46,7 +58,7 @@ class WorkModel extends Model
     {
         $builder = $this->table($this->table);
         $builder->select('*');
-        $builder->join('category', 'category_id = works_category_id','left');
+        $builder->join('category', 'category_id = works_category_id', 'left');
         $builder->where('id', $id);
         $query = $builder->get();
         return $query->getRowArray();
@@ -63,4 +75,26 @@ class WorkModel extends Model
         }
     }
 
+    /**
+     * Model
+     * Frontend
+     **/
+
+    public function getWorksTitle()
+    {
+        $query = $this->db->query(
+            'SELECT title, quote FROM works GROUP by title desc limit 1'
+        );
+        $result = $query;
+        return $result;
+    }
+
+    public function getListWorks($title = null)
+    {
+        $builder = $this->db->table('works');
+        $builder->select('*');
+        $builder->where(['title' => $title]);
+        $builder->join('category', 'category_id = works_category_id', 'left');
+        return $builder->get();
+    }
 }

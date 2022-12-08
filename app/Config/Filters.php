@@ -18,13 +18,14 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
+        'csrf' => CSRF::class,
+        'toolbar' => DebugToolbar::class,
+        'honeypot' => Honeypot::class,
+        'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'auth'          => \App\Filters\AuthFilter::class,
-        'noauth'        => \App\Filters\NoAuthFilter::class,
+        'auth' => \App\Filters\AuthFilter::class,
+        'noauth' => \App\Filters\NoAuthFilter::class,
+        'visitorcounter' => \App\Filters\VisitorCounterFilter::class,
     ];
 
     /**

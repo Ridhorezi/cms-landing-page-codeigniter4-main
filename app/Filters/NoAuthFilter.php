@@ -11,7 +11,7 @@ class NoAuthFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session()->get('akun_username')) {
-            return redirect()->to('admin/dashboard');
+            return redirect()->to(base_url('admin/dashboard'));
         }
     }
 

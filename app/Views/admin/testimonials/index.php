@@ -28,7 +28,7 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= site_url(
+                                <li class="breadcrumb-item"><a href="<?= base_url(
                                     'admin/dashboard'
                                 ) ?>">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Testimonials</li>
@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="buttons">
-                            <a href="<?= site_url(
+                            <a href="<?= base_url(
                                 'admin/testimonials/create'
                             ) ?>" class="btn btn-primary"> <i class="bi bi-plus"></i>Add Data</a>
                         </div>
@@ -63,10 +63,10 @@
                                 foreach ($readTestimonials as $testimonial) {
 
                                     $id = $testimonial->id;
-                                    $link_edit = site_url(
+                                    $link_edit = base_url(
                                         "admin/testimonials/edit/$id"
                                     );
-                                    $link_delete = site_url(
+                                    $link_delete = base_url(
                                         "admin/testimonials/index/?aksi=hapus&id=$id"
                                     );
                                     ?>

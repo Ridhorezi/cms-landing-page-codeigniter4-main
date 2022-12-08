@@ -8,7 +8,7 @@ class AdminModel extends Model {
     
     protected $table = 'admin';
     protected $primaryKey = 'email';
-    protected $allowedFields = ['username', 'password', 'nama_lengkap', 'token', 'last_login'];
+    protected $allowedFields = ['username', 'password', 'fullname', 'token', 'last_login'];
 
     public function getData($parameter) {
         $builder = $this->table($this->table);

@@ -24,8 +24,9 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost:8080/';
-
+    // public $baseURL = 'localhost:8080';
+    public $baseURL = BASE;
+    
     /**
      * --------------------------------------------------------------------------
      * Index File
@@ -56,7 +57,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $uriProtocol = 'REQUEST_URI';
+    public $uriProtocol = 'PATH_INFO';
 
     /**
      * --------------------------------------------------------------------------

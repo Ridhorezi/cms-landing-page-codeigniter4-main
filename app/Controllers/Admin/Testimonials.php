@@ -44,7 +44,7 @@ class Testimonials extends BaseController
             if ($dataTestimonials) {
                 $action = $this->TestimonialModel->deleteTestimonial($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/testimonials/index");
+                    return redirect()->to(base_url('admin/testimonials/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -115,10 +115,10 @@ class Testimonials extends BaseController
                         $file->move($directory, $image);
                     }
                     session()->setFlashdata('success', 'Data Successfully Saved');
-                    return redirect()->to('admin/testimonials/index');
+                    return redirect()->to(base_url('admin/testimonials/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Saved');
-                    return redirect()->to('admin/testimonials/create');
+                    return redirect()->to(base_url('admin/testimonials/create'));
                 }
             }
         } 
@@ -150,7 +150,7 @@ class Testimonials extends BaseController
         $dataTestimonials = $this->TestimonialModel->editTestimonial($id);
 
         if (empty($dataTestimonials)) {
-            return redirect()->to('admin/testimonials/edit');
+            return redirect()->to(base_url('admin/testimonials/edit'));
         }
 
         $data = $dataTestimonials;
@@ -221,10 +221,10 @@ class Testimonials extends BaseController
                         $file->move($directory, $image);
                     }
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/testimonials/index');
+                    return redirect()->to(base_url('admin/testimonials/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/testimonials/edit');
+                    return redirect()->to(base_url('admin/testimonials/edit'));
                 }
             }
         }

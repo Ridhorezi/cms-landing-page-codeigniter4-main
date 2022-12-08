@@ -9,7 +9,12 @@ class HomeModel extends Model
     protected $table = 'homes';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['title','quote','video'];
+    protected $allowedFields = ['title', 'quote', 'video'];
+
+    /**
+     * Model
+     * Backend
+     **/
 
     function insertHome($data)
     {
@@ -32,11 +37,11 @@ class HomeModel extends Model
 
     function readHome($id = false)
     {
-        if($id === false){
+        if ($id === false) {
             return $this->findAll();
-        }else{
+        } else {
             return $this->getWhere(['id' => $id]);
-        }   
+        }
     }
 
     function editHome($id)
@@ -50,7 +55,6 @@ class HomeModel extends Model
     function getHome($id)
     {
         $builder = $this->table($this->table);
-
         $builder->where('id', $id);
         $query = $builder->get();
         return $query->getRowArray();
@@ -67,4 +71,25 @@ class HomeModel extends Model
         }
     }
 
+    /**
+     * Model
+     * Frontend
+     **/
+
+    public function getHomeTitle()
+    {
+        $query = $this->db->query(
+            'SELECT title, quote FROM homes GROUP by title desc limit 1'
+        );
+        $result = $query;
+        return $result;
+    }
+
+    public function getListHome($title = null)
+    {
+        $builder = $this->db->table('homes');
+        $builder->select('*');
+        $builder->where(['title' => $title]);
+        return $builder->get();
+    }
 }

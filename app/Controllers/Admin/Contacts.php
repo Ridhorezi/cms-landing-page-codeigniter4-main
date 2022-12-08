@@ -21,7 +21,7 @@ class Contacts extends BaseController
             if ($dataContacts['id']) {
                 $action = $this->ContactModel->deleteContact($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/contacts/index");
+                    return redirect()->to(base_url('admin/contacts/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -58,7 +58,7 @@ class Contacts extends BaseController
         $dataContacts = $this->ContactModel->editContact($id);
 
         if (empty($dataContacts)) {
-            return redirect()->to('admin/contacts/edit');
+            return redirect()->to(base_url('admin/contacts/edit'));
         }
 
         $data = $dataContacts;
@@ -108,10 +108,10 @@ class Contacts extends BaseController
                 if ($action != false) {
                     $id = $action;
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/contacts/index');
+                    return redirect()->to(base_url('admin/contacts/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/contacts/edit');
+                    return redirect()->to(base_url('admin/contacts/edit'));
                 }
             }
         }

@@ -22,7 +22,7 @@ class Home extends BaseController
                 @unlink("assets/video"."/".$dataHome['video']);
                 $action = $this->HomeModel->deleteHome($this->request->getVar('id'));
                 if ($action == true) {
-                    return redirect()->to("admin/home/index");
+                    return redirect()->to(base_url('admin/home/index'));
                 } else {
                     session()->setFlashdata('warning', ['Failed to delete data']);
                 }
@@ -99,10 +99,10 @@ class Home extends BaseController
                         $file->move($directory, $video);
                     }
                     session()->setFlashdata('success', 'Data Successfully Saved');
-                    return redirect()->to('admin/home/index');
+                    return redirect()->to(base_url('admin/home/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Saved');
-                    return redirect()->to('admin/home/create');
+                    return redirect()->to(base_url('admin/home/create'));
                 }
             }
         }
@@ -131,7 +131,7 @@ class Home extends BaseController
         $dataHome = $this->HomeModel->editHome($id);
 
         if (empty($dataHome)) {
-            return redirect()->to('admin/home/edit');
+            return redirect()->to(base_url('admin/home/edit'));
         }
 
         $data = $dataHome;
@@ -181,10 +181,10 @@ class Home extends BaseController
                         $file->move($directory, $video);
                     }
                     session()->setFlashdata('success', 'Data Successfully Updated');
-                    return redirect()->to('admin/home/index');
+                    return redirect()->to(base_url('admin/home/index'));
                 } else {
                     session()->setFlashdata('warning', 'Data Unsuccessfully Updated');
-                    return redirect()->to('admin/home/edit');
+                    return redirect()->to(base_url('admin/home/edit'));
                 }
             }
         }

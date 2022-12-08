@@ -37,7 +37,26 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::index');
+
+
+
+/**
+ * Route Frontend
+ */
+
+$routes->group('/', ['filter' => 'visitorcounter'], function($routes){
+
+    //Routes view user
+    $routes->add('','Frontend\Frontend::index');
+
+    //Routes postContact
+    $routes->add('contact','Frontend\Frontend::postContact');
+
+    //Routes postFeedback
+    $routes->add('feedback','Frontend\Frontend::postFeedback');
+    
+});
 
 /**
  * Route Authentication
@@ -65,7 +84,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
     // Routes Dashboard
     $routes->add('dashboard', 'Admin\Dashboard::index');
-    $routes->add('dashboard', 'Admin\Dashboard::edit');
+    $routes->add('user', 'Admin\Dashboard::editProfile');
 
     // Routes Home
     $routes->add('home/index', 'Admin\Home::index');
@@ -92,9 +111,13 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->add('testimonials/create', 'Admin\Testimonials::create');
     $routes->add('testimonials/edit/(:any)', 'Admin\Testimonials::edit/$1');
 
+    // Routes Info
+    $routes->add('info/index', 'Admin\Info::index');
+    $routes->add('info/create', 'Admin\Info::create');
+    $routes->add('info/edit/(:any)', 'Admin\Info::edit/$1'); 
+
     // Routes Feedback
     $routes->add('feedbacks/index', 'Admin\Feedbacks::index');
-    $routes->add('feedbacks/create', 'Admin\Feedbacks::create');
     $routes->add('feedbacks/edit/(:any)', 'Admin\Feedbacks::edit/$1');
 
     // Routes Contacts
